@@ -14,17 +14,14 @@ const gameSchema = new mongoose.Schema({
   genero: {
     type: String,
     require: true,
-    select: false,
   },
   desenvolvedor: {
     type: String,
     require: true,
-    select: false,
   },
   console: {
     type: String,
     require: true,
-    select: false,
   },
   createdAt: {
     type: Date,

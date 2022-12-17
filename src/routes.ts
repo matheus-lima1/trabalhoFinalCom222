@@ -2,11 +2,14 @@ import { Router } from 'express';
 import UserController from "./controllers/userController";
 import GameController from "./controllers/gamesController";
 import ReviewController from "./controllers/reviewController";
+// import AuthController from "./controllers/authController";
 
 const routes = Router();
 
 /** USUARIOS */
 routes.post("/user", UserController.create);
+
+routes.get("/login", UserController.find)
 
 /** GAMES */
 routes.post("/games", GameController.create);
@@ -20,5 +23,7 @@ routes.get("/games/console", GameController.findByConsole);
 routes.post("/review", ReviewController.create);
 
 routes.get("/review", ReviewController.findByTitulo);
+
+
 
 export default routes;
