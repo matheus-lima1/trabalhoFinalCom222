@@ -1,11 +1,37 @@
 import { Request, Response } from "express";
 import Review from "../models/review";
+const jwt = require('jsonwebtoken');
+const authConfig = require('../config/auth');
 
 class ReviewController {
 
   async create(request: Request, response: Response) {
-
+    const authHeader = request.headers.authorization;
     const { titulo, texto, nota } = request.body;
+    // console.log(authHeader);
+    if (!authHeader) {
+      return response.status(401).send({ error: 'No token provided' });
+    }
+
+    const parts = authHeader.split(' ');
+
+    if (!(parts.length === 2)) {
+      return response.status(401).send({ error: 'Token error' });
+    }
+    const [scheme, token] = parts;
+    const bar = "Bearer"
+    // if (!/^Bearer$^/i.test(scheme)) {
+    if (!scheme.match("Bearer")) {
+      return response.status(401).send({ error: scheme });
+    }
+
+    jwt.verify(token, authConfig.secret, (err, decoded) => {
+      if (err) return response.status(401).send({ error: 'Token Invalido' });
+
+      request.body.userId = decoded.id;
+    });
+
+
     try {
       const gameExists = await Review.findOne({ titulo: titulo });
 

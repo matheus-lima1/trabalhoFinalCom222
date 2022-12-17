@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import User from "../models/user";
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
+const authConfig = require('../config/auth')
 
 class UserController {
 
@@ -23,7 +25,11 @@ class UserController {
         email,
         password
       });
-      return response.json(user);
+      const token = jwt.sign({ id: user.id }, authConfig.secret, {
+        expiresIn: 86400,
+      })
+      user.password = undefined;
+      return response.json({ user, token });
 
     } catch (error) {
       return response.status(500).send({
@@ -52,7 +58,11 @@ class UserController {
       })
     }
 
-    res.send({ user })
+    const token = jwt.sign({ id: user.id }, authConfig.secret, {
+      expiresIn: 86400,
+    })
+    user.password = undefined;
+    res.send({ user, token })
   }
 }
 

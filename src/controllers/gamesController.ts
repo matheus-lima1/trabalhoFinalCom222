@@ -1,11 +1,38 @@
 import { Request, Response } from "express";
 import Game from "../models/games";
+const jwt = require('jsonwebtoken');
+const authConfig = require('../config/auth');
+
 
 class GameController {
 
   async create(request: Request, response: Response) {
-
+    const authHeader = request.headers.authorization;
     const { console, titulo, resumo, desenvolvedor, categoria } = request.body;
+
+    if (!authHeader) {
+      return response.status(401).send({ error: 'No token provided' });
+    }
+
+    const parts = authHeader.split(' ');
+
+    if (!(parts.length === 2)) {
+      return response.status(401).send({ error: 'Token error' });
+    }
+    const [scheme, token] = parts;
+    const bar = "Bearer"
+    // if (!/^Bearer$^/i.test(scheme)) {
+    if (!scheme.match("Bearer")) {
+      return response.status(401).send({ error: scheme });
+    }
+
+    jwt.verify(token, authConfig.secret, (err, decoded) => {
+      if (err) return response.status(401).send({ error: 'Token Invalido' });
+
+      request.body.userId = decoded.id;
+    });
+
+
     try {
       const gameExists = await Game.findOne({ titulo: titulo });
 
