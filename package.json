@@ -1,0 +1,32 @@
+{
+  "name": "trabalhofinalcom222",
+  "version": "1.0.0",
+  "description": "<!-- Neste trabalho cada grupo deverá implementar um sistema colaborativo para\r cadastramento, avaliação e consulta de jogos. Os jogos devem ser organizados por\r console. Por efeito de simplificação, consideraremos apenas 4 tipos de console:\r Xbox, Playstation, Switch e PC. -->",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salles97/trabalhoFinalCom222.git"
+  },
+  "author": "salles",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/salles97/trabalhoFinalCom222/issues"
+  },
+  "homepage": "https://github.com/salles97/trabalhoFinalCom222#readme",
+  "dependencies": {
+    "@types/express": "^4.17.15",
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.0"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.4"
+  }
+}
