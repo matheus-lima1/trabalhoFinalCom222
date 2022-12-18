@@ -15,10 +15,11 @@ routes.get("/login", UserController.find)
 /** GAMES */
 routes.post("/games", GameController.create);
 
-// Consulta todos jogos
-routes.get("/games", GameController.find);
-// Consulta os jogos por console
-routes.get("/games/console", GameController.findByConsole);
+routes.get("/games", GameController.find); // Consulta todos jogos
+
+routes.get("/games/console", GameController.findByConsole); // Consulta os jogos por console
+
+routes.get("/games/bem-avaliados", GameController.findHighestRated); // Consulta os jogos mais bem avaliados
 
 /** REVIEWS */
 routes.post("/review", ReviewController.create);

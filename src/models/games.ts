@@ -1,8 +1,13 @@
 import mongoose from 'mongoose';
 
 const gameSchema = new mongoose.Schema({
+  
   titulo: {
     type: String,
+    require: true,
+  },
+  avaliacao: {
+    type: Number,
     require: true,
   },
   resumo: {
@@ -34,4 +39,3 @@ const gameSchema = new mongoose.Schema({
 });
 
 export default mongoose.model("Game", gameSchema);
-

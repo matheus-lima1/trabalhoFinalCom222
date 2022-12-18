@@ -3,7 +3,6 @@ import Game from "../models/games";
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
 
-
 class GameController {
 
   async create(request: Request, response: Response) {
@@ -89,6 +88,21 @@ class GameController {
     }
   }
 
+  async findHighestRated(req: Request, res: Response) {
+    const consoleGame = req.query.console;
+
+    try {
+
+      const games = await Game.find({ 'console': consoleGame }, null, {limit:2}).sort({avaliacao: -1});
+      return res.json(games);
+
+    } catch (error) {
+      return res.status(500).json({
+        error: "Algo errado",
+        message: error,
+      });
+    }
+  }
 
 }
 

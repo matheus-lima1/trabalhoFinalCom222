@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 const UserSchema = new mongoose.Schema({
+
   name: {
     type: String,
     require: true,
@@ -31,4 +32,3 @@ UserSchema.pre('save', async function (next) {
 })
 
 export default mongoose.model("User", UserSchema);
-
