@@ -8,9 +8,9 @@ const authMiddleware = require("./middlewares/auth")
 const routes = Router();
 
 /** USUARIOS */
-routes.post("/user", UserController.create);
+routes.post("/user", UserController.create); // Criar usuário
 
-routes.get("/login", UserController.find)
+routes.get("/login", UserController.find); // Consultar usuário
 
 /** GAMES */
 routes.post("/games", GameController.create);
@@ -22,10 +22,9 @@ routes.get("/games/console", GameController.findByConsole); // Consulta os jogos
 routes.get("/games/bem-avaliados", GameController.findHighestRated); // Consulta os jogos mais bem avaliados
 
 /** REVIEWS */
-routes.post("/review", ReviewController.create);
+routes.post("/review", ReviewController.create); // Criar review
 
-routes.get("/review", ReviewController.findByTitulo);
-
+routes.get("/review", ReviewController.findByTitulo); // Consultar reviews
 
 
 export default routes;

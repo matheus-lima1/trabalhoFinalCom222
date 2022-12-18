@@ -8,14 +8,9 @@ const gameSchema = new mongoose.Schema({
   },
   avaliacao: {
     type: Number,
-    require: true,
+    require: false,
   },
   resumo: {
-    type: String,
-    require: true,
-    lowercase: true,
-  },
-  descricao: {
     type: String,
     require: true,
     lowercase: true,
