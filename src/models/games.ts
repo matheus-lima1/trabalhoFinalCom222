@@ -10,6 +10,11 @@ const gameSchema = new mongoose.Schema({
     require: true,
     lowercase: true,
   },
+  descricao: {
+    type: String,
+    require: true,
+    lowercase: true,
+  },
   genero: {
     type: String,
     require: true,

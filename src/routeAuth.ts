@@ -2,7 +2,7 @@ import { Router } from 'express';
 import UserController from "./controllers/userController";
 import GameController from "./controllers/gamesController";
 import ReviewController from "./controllers/reviewController";
-// import { authMiddleware } from "./middlewares/auth";
+// import {authMiddleware}  from "./middlewares/auth";
 // import AuthController from "./controllers/authController";
 
 const routes = Router();
