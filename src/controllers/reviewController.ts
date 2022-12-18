@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Review from "../models/review";
+import Game from "../models/games";
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
 
@@ -19,8 +20,8 @@ class ReviewController {
       return response.status(401).send({ error: 'Token error' });
     }
     const [scheme, token] = parts;
-    const bar = "Bearer"
-    // if (!/^Bearer$^/i.test(scheme)) {
+
+
     if (!scheme.match("Bearer")) {
       return response.status(401).send({ error: scheme });
     }
@@ -33,7 +34,7 @@ class ReviewController {
 
 
     try {
-      const gameExists = await Review.findOne({ titulo: titulo });
+      const gameExists = await Game.findOne({ titulo: titulo });
 
       if (!gameExists) {
         return response.status(400).json({
@@ -47,14 +48,28 @@ class ReviewController {
           error: "Ooops",
           message: "A nota precisa ser entre 0 e 10",
         })
-      }
-
+      };
 
       const review = await Review.create({
         titulo,
         texto,
         nota,
       });
+
+      const reviews = await Review.find({ titulo: titulo });
+      let soma = 0;
+      let count = 0;
+      for (const rv of reviews) {
+        soma += Number(rv.nota);
+        count++;
+      }
+
+      const avaliacaomedia = (soma / count);
+      console.log(avaliacaomedia);
+
+
+      await Game.findOneAndUpdate({ titulo: titulo }, { avaliacao: avaliacaomedia });
+
       return response.json(review);
 
     } catch (error) {

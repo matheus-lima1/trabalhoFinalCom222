@@ -93,7 +93,7 @@ class GameController {
 
     try {
 
-      const games = await Game.find({ console: consoleGame }, null, {limit:3}).sort({avaliacao: -1});
+      const games = await Game.find({ console: consoleGame }, null, { limit: 3 }).sort({ avaliacao: -1 });
       return res.json(games);
 
     } catch (error) {
