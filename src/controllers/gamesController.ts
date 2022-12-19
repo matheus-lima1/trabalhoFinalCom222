@@ -25,7 +25,7 @@ class GameController {
       return response.status(401).send({ error: scheme });
     }
 
-    jwt.verify(token, authConfig.secret, (err, decoded) => {
+    jwt.verify(token, authConfig.secret, (err: any, decoded: { id: any; }) => {
       if (err) return response.status(401).send({ error: 'Token Invalido' });
 
       request.body.userId = decoded.id;
