@@ -21,6 +21,8 @@ routes.get("/games/console", GameController.findByConsole); // Consulta os jogos
 
 routes.get("/games/bem-avaliados", GameController.findHighestRated); // Consulta os jogos mais bem avaliados
 
+//routes.get("/games/pesquisa", GameController.findByParameter); // Consulta os jogos na barra de pesquisa
+
 /** REVIEWS */
 routes.post("/review", ReviewController.create); // Criar review
 
