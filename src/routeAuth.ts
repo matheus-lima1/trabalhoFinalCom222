@@ -11,7 +11,7 @@ const routes = Router();
 /** USUARIOS */
 routes.post("/user", UserController.create);
 
-routes.get("/login", UserController.find)
+routes.post("/login", UserController.find)
 
 /** GAMES */
 routes.post("/games", GameController.create);
