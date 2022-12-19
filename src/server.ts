@@ -5,7 +5,7 @@ import routeAuth from './routeAuth';
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/gamesDb');
+mongoose.connect('mongodb+srv://matheuslima1:trabalhofinalcom222@cluster0.qlgtymm.mongodb.net/?retryWrites=true&w=majority');
 
 const port = 3000;
 
