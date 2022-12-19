@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const gameSchema = new mongoose.Schema({
-  
+
   titulo: {
     type: String,
     require: true,
@@ -24,6 +24,10 @@ const gameSchema = new mongoose.Schema({
     require: true,
   },
   console: {
+    type: String,
+    require: true,
+  },
+  imagem: {
     type: String,
     require: true,
   },

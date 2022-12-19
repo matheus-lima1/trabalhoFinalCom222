@@ -7,7 +7,7 @@ class GameController {
 
   async create(request: Request, response: Response) {
     const authHeader = request.headers.authorization;
-    const { console, titulo, resumo, desenvolvedor, categoria } = request.body;
+    const { console, titulo, resumo, desenvolvedor, genero, imagem } = request.body;
 
     if (!authHeader) {
       return response.status(401).send({ error: 'No token provided' });
@@ -47,7 +47,8 @@ class GameController {
         titulo,
         resumo,
         desenvolvedor,
-        categoria
+        genero,
+        imagem
       });
       return response.json(game);
 
@@ -129,8 +130,8 @@ class GameController {
     const generogame = req.query.genero;
 
     try {
-      
-      
+
+
 
     } catch (error) {
       return res.status(500).json({
