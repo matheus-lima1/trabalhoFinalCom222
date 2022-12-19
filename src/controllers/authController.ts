@@ -4,7 +4,7 @@ const User = require('../models/user');
 
 const router = express.Router();
 
-router.post('/register', async (req, res) => {
+router.post('/register', async (req: { body: { email: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; message: string; }): any; new(): any; }; send: { (arg0: { error: string; }): any; new(): any; }; }; send: (arg0: { user: any; }) => any; }) => {
   const { email } = req.body;
   const gameExists = await User.findOne({ email: email });
 
@@ -24,7 +24,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-router.post('/authenticate', async (req, res) => {
+router.post('/authenticate', async (req: { body: { email: any; password: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; message: string; }): any; new(): any; }; }; send: (arg0: { user: any; }) => void; }) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email: email }).select('+password');
@@ -47,4 +47,4 @@ router.post('/authenticate', async (req, res) => {
 
 })
 
-module.exports = app => app.use('/auth', router);
+module.exports = (app: { use: (arg0: string, arg1: any) => any; }) => app.use('/auth', router);

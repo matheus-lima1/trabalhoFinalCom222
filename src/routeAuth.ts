@@ -2,6 +2,7 @@ import { Router } from 'express';
 import UserController from "./controllers/userController";
 import GameController from "./controllers/gamesController";
 import ReviewController from "./controllers/reviewController";
+//import { Router } from 'express-serve-static-core';
 // import {authMiddleware}  from "./middlewares/auth";
 // import AuthController from "./controllers/authController";
 
@@ -20,4 +21,4 @@ routes.post("/review", ReviewController.create);
 
 
 export default routes;
-module.exports = app => app.use('/teste', routes);
+module.exports = (app: { use: (arg0: string, arg1: Router) => any; }) => app.use('/teste', routes);
