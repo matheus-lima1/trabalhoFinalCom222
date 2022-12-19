@@ -104,6 +104,25 @@ class GameController {
     }
   }
 
+  // async findByParameter(req: Request, res: Response) {
+  //   const parametro = req.query.parametro;
+
+  //   try {
+  //     //const games = await Game.find({ 'console': parametro });
+  //     const games = await Game.find(
+  //       { $or: [{ titulo: parametro }, { genero: parametro}, { desenvolvedor: parametro}] }
+  //     );
+
+  //     return res.json(games);
+
+  //   } catch (error) {
+  //     return res.status(500).json({
+  //       error: "Algo errado",
+  //       message: error,
+  //     })
+  //   }
+  // }
+
 }
 
 export default new GameController;
