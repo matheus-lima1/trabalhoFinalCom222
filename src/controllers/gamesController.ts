@@ -123,6 +123,23 @@ class GameController {
   //   }
   // }
 
+  async findByParameter(req: Request, res: Response) {
+    const tituloGame = req.query.titulo;
+    const desenvolvedorGame = req.query.desenvolvedor;
+    const generogame = req.query.genero;
+
+    try {
+      
+      
+
+    } catch (error) {
+      return res.status(500).json({
+        error: "Algo errado",
+        message: error,
+      })
+    }
+  }
+
 }
 
 export default new GameController;
