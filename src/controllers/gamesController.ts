@@ -7,7 +7,7 @@ class GameController {
 
   async create(request: Request, response: Response) {
     const authHeader = request.headers.authorization;
-    const { console, titulo, resumo, desenvolvedor, categoria } = request.body;
+    const { console, titulo, avaliacao, imagem, resumo, desenvolvedor, categoria } = request.body;
 
     if (!authHeader) {
       return response.status(401).send({ error: 'No token provided' });
@@ -45,6 +45,8 @@ class GameController {
       const game = await Game.create({
         console,
         titulo,
+        avaliacao, 
+        imagem,
         resumo,
         desenvolvedor,
         categoria
@@ -93,7 +95,7 @@ class GameController {
 
     try {
 
-      const games = await Game.find({ console: consoleGame }, null, { limit: 3 }).sort({ avaliacao: -1 });
+      const games = await Game.find({ console: consoleGame }).sort({ avaliacao: -1 }).limit(3);
       return res.json(games);
 
     } catch (error) {
@@ -104,13 +106,13 @@ class GameController {
     }
   }
 
-  // async findByParameter(req: Request, res: Response) {
-  //   const parametro = req.query.parametro;
+  // async findByValue(req: Request, res: Response) {
+  //   const valor = req.query.value;
 
   //   try {
-  //     //const games = await Game.find({ 'console': parametro });
+  //     //const games = await Game.find({ 'console': valor });
   //     const games = await Game.find(
-  //       { $or: [{ titulo: parametro }, { genero: parametro}, { desenvolvedor: parametro}] }
+  //       { $or: [{ titulo: valor }, { genero: valor }, { desenvolvedor: valor }] }
   //     );
 
   //     return res.json(games);
@@ -124,19 +126,30 @@ class GameController {
   // }
 
   async findByParameter(req: Request, res: Response) {
-    const tituloGame = req.query.titulo;
+    const generoGame = req.query.genero;
     const desenvolvedorGame = req.query.desenvolvedor;
-    const generogame = req.query.genero;
+    const tituloGame = req.query.titulo;
 
     try {
-      
-      
 
+      if (generoGame) {
+        const games = await Game.find({ genero: generoGame }).sort({ avaliacao: -1 }).limit(3);
+        return res.json(games);
+      }
+      else if (desenvolvedorGame) {
+        const games = await Game.find({ desenvolvedor: desenvolvedorGame }).sort({ avaliacao: -1 }).limit(3);
+        return res.json(games);
+      } 
+      else if (tituloGame) {
+        const games = await Game.find({ titulo: tituloGame }).sort({ avaliacao: -1 }).limit(3);
+        return res.json(games);
+      }
+      
     } catch (error) {
       return res.status(500).json({
         error: "Algo errado",
         message: error,
-      })
+      });
     }
   }
 

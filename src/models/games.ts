@@ -10,6 +10,10 @@ const gameSchema = new mongoose.Schema({
     type: Number,
     require: false,
   },
+  imagem: {
+    type: String,
+    require: true,
+  },
   resumo: {
     type: String,
     require: true,
