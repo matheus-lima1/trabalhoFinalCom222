@@ -12,7 +12,7 @@ router.post('/register', async (req: { body: { email: any; }; }, res: { status: 
     return res.status(400).json({
       error: "Ooops",
       message: "email already exists",
-    })
+    });
   }
 
   try {
@@ -33,17 +33,17 @@ router.post('/authenticate', async (req: { body: { email: any; password: any; };
     return res.status(400).json({
       error: "Ooops",
       message: "user not found",
-    })
+    });
   }
 
   if (!await bcrypt.compare(password, user.password)) {
     return res.status(400).json({
       error: "Ooops",
       message: "Senha incorreta",
-    })
+    });
   }
 
-  res.send({ user })
+  res.send({ user });
 
 })
 

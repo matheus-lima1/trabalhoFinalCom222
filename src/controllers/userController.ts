@@ -17,7 +17,7 @@ class UserController {
         return response.status(400).json({
           error: "Ooops",
           message: "User already exists",
-        })
+        });
       }
 
       const user = await User.create({
@@ -27,7 +27,8 @@ class UserController {
       });
       const token = jwt.sign({ id: user.id }, authConfig.secret, {
         expiresIn: 86400,
-      })
+      });
+
       user.password = undefined;
       return response.json({ user, token });
 
@@ -35,7 +36,7 @@ class UserController {
       return response.status(500).send({
         error: "Registration failed",
         message: error
-      })
+      });
     }
   }
 
@@ -48,21 +49,22 @@ class UserController {
       return res.status(400).json({
         error: "Ooops",
         message: "user not found",
-      })
+      });
     }
 
     if (!await bcrypt.compare(password, user.password)) {
       return res.status(400).json({
         error: "Ooops",
         message: "Senha incorreta",
-      })
+      });
     }
 
     const token = jwt.sign({ id: user.id }, authConfig.secret, {
       expiresIn: 86400,
-    })
+    });
+
     user.password = undefined;
-    res.send({ user, token })
+    res.send({ user, token });
   }
 }
 

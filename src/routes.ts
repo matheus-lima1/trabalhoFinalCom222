@@ -2,7 +2,7 @@ import { Router } from 'express';
 import UserController from "./controllers/userController";
 import GameController from "./controllers/gamesController";
 import ReviewController from "./controllers/reviewController";
-const authMiddleware = require("./middlewares/auth")
+const authMiddleware = require("./middlewares/auth");
 // import AuthController from "./controllers/authController";
 
 const routes = Router();

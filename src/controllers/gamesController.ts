@@ -31,7 +31,6 @@ class GameController {
       request.body.userId = decoded.id;
     });
 
-
     try {
       const gameExists = await Game.findOne({ titulo: titulo });
 
@@ -39,7 +38,7 @@ class GameController {
         return response.status(400).json({
           error: "Ooops",
           message: "Titulo already exists",
-        })
+        });
       }
 
       const game = await Game.create({
@@ -56,7 +55,7 @@ class GameController {
       return response.status(500).send({
         error: "Registration failed",
         message: error
-      })
+      });
     }
   }
 
@@ -69,13 +68,13 @@ class GameController {
       return res.status(500).json({
         error: "Algo errado",
         message: error,
-      })
+      });
     }
   }
 
   async findByConsole(req: Request, res: Response) {
     const consoleGame = req.query.console;
-    console.log(req.query)
+
     try {
       const games = await Game.find({ 'console': consoleGame });
 
@@ -85,7 +84,7 @@ class GameController {
       return res.status(500).json({
         error: "Algo errado",
         message: error,
-      })
+      });
     }
   }
 

@@ -9,7 +9,7 @@ class ReviewController {
   async create(request: Request, response: Response) {
     const authHeader = request.headers.authorization;
     const { titulo, texto, nota } = request.body;
-    // console.log(authHeader);
+
     if (!authHeader) {
       return response.status(401).send({ error: 'No token provided' });
     }
@@ -40,14 +40,14 @@ class ReviewController {
         return response.status(400).json({
           error: "Ooops",
           message: "Jogo nao cadastrado",
-        })
+        });
       }
 
       if (nota < 0 || nota > 10) {
         return response.status(400).json({
           error: "Ooops",
           message: "A nota precisa ser entre 0 e 10",
-        })
+        });
       };
 
       const review = await Review.create({
@@ -67,7 +67,6 @@ class ReviewController {
       const avaliacaomedia = (soma / count);
       console.log(avaliacaomedia);
 
-
       await Game.findOneAndUpdate({ titulo: titulo }, { avaliacao: avaliacaomedia });
 
       return response.json(review);
@@ -76,7 +75,7 @@ class ReviewController {
       return response.status(500).send({
         error: "Registration failed",
         message: error
-      })
+      });
     }
   }
 
@@ -95,7 +94,7 @@ class ReviewController {
 
   async findByTitulo(req: Request, res: Response) {
     const reviewGame = req.query.titulo;
-    console.log(req.query)
+
     try {
       const reviews = await Review.find({ 'titulo': reviewGame });
 
@@ -105,7 +104,7 @@ class ReviewController {
       return res.status(500).json({
         error: "Algo errado",
         message: error,
-      })
+      });
     }
   }
 
