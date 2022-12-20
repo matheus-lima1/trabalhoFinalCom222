@@ -13,7 +13,6 @@ const reviewSchema = new mongoose.Schema({
   texto: {
     type: String,
     require: true,
-    select: false,
   },
   createdAt: {
     type: Date,
