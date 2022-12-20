@@ -7,7 +7,7 @@ class GameController {
 
   async create(request: Request, response: Response) {
     const authHeader = request.headers.authorization;
-    const { console, titulo, avaliacao, imagem, resumo, desenvolvedor, categoria } = request.body;
+    const { console, titulo, resumo, desenvolvedor, genero, imagem } = request.body;
 
     if (!authHeader) {
       return response.status(401).send({ error: 'No token provided' });
@@ -45,11 +45,10 @@ class GameController {
       const game = await Game.create({
         console,
         titulo,
-        avaliacao, 
         imagem,
         resumo,
         desenvolvedor,
-        categoria
+        genero
       });
       return response.json(game);
 

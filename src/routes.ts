@@ -10,7 +10,7 @@ const routes = Router();
 /** USUARIOS */
 routes.post("/user", UserController.create); // Criar usuário
 
-routes.get("/login", UserController.find); // Consultar usuário
+routes.post("/login", UserController.find); // Consultar usuário
 
 /** GAMES */
 routes.post("/games", GameController.create);

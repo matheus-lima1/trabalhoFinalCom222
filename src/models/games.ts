@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const gameSchema = new mongoose.Schema({
-  
+
   titulo: {
     type: String,
     require: true,
